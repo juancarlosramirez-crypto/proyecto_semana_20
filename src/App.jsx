@@ -1,9 +1,7 @@
 import reactLogo from './assets/react.svg';
 import viteLogo from './assets/vite.svg';
 import heroImg from './assets/hero.png';
-import { Encabezado } from './components/Encabezado';
-import { TarjetaAlumno } from './components/TarjetaAlumno';
-import { ListaAlumnos } from './components/ListaAlumnos';
+import { Contador } from './components/Contador';
 import './App.css';
 
 function App() {
@@ -11,11 +9,9 @@ function App() {
   const horaActual = new Date().getHours();
 
   return (
-    <div>
-      <Encabezado />
-
-      <ListaAlumnos />
-    </div>
+    <>
+      <Contador />
+    </>
   );
 }
 
