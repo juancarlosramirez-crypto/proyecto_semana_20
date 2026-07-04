@@ -1,4 +1,4 @@
-function TarjetaAlumno({ nombre, grado, seccion }) {
+export const TarjetaAlumno = ({ nombre, grado, seccion }) => {
   return (
     <div>
       <h2>Nombre: {nombre}</h2>
@@ -7,6 +7,4 @@ function TarjetaAlumno({ nombre, grado, seccion }) {
       </p>
     </div>
   );
-}
-
-export default TarjetaAlumno;
+};

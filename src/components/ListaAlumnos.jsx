@@ -1,6 +1,6 @@
-import TarjetaAlumno from './TarjetaAlumno';
+import { TarjetaAlumno } from './TarjetaAlumno';
 
-function ListaAlumnos() {
+export const ListaAlumnos = () => {
   const alumnos = [
     { id: 1, nombre: 'María Fernández', grado: '9°', seccion: 'A' },
     { id: 2, nombre: 'Carlos Hernández', grado: '8°', seccion: 'B' },
@@ -18,6 +18,4 @@ function ListaAlumnos() {
       ))}
     </div>
   );
-}
-
-export default ListaAlumnos;
+};
