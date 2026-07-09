@@ -1,15 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { TarjetaAlumno } from './TarjetaAlumno';
+import { obtenerAlumnos } from '../services/alumnosService.js';
 
-export const ListaAlumnos = () => {
+export const ListaAlumnos = ({ onSeleccionarAlumno }) => {
+  const [alumnos, setAlumnos] = useState([]);
   const [busqueda, setBusqueda] = useState('');
   const [gradoFiltro, setGradoFiltro] = useState('Todos');
 
-  const alumnos = [
-    { id: 1, nombre: 'María Fernández', grado: '9°', seccion: 'A' },
-    { id: 2, nombre: 'Carlos Hernández', grado: '8°', seccion: 'B' },
-    { id: 3, nombre: 'Ana López', grado: '9°', seccion: 'A' },
-  ];
+  useEffect(() => {
+    const fetchAlumnos = async () => {
+      try {
+        const res = await obtenerAlumnos();
+
+        setAlumnos(res);
+      } catch (error) {
+        console.error('Error al obtener los alumnos:', error);
+      }
+    };
+
+    fetchAlumnos();
+  }, []);
 
   const alumnosFiltrados = alumnos.filter((alumno) => {
     const coincideNombre = alumno.nombre
@@ -36,9 +46,9 @@ export const ListaAlumnos = () => {
         onChange={(e) => setGradoFiltro(e.target.value)}
       >
         <option value='Todos'>Todos los grados</option>
-        <option value='7°'>7° grado</option>
-        <option value='8°'>8° grado</option>
-        <option value='9°'>9° grado</option>
+        <option value='7to'>7° grado</option>
+        <option value='8to'>8° grado</option>
+        <option value='9to'>9° grado</option>
       </select>
 
       <p>
@@ -48,9 +58,11 @@ export const ListaAlumnos = () => {
       {alumnosFiltrados.map((alumno) => (
         <TarjetaAlumno
           key={alumno.id}
+          id={alumno.id}
           nombre={alumno.nombre}
           grado={alumno.grado}
           seccion={alumno.seccion}
+          onSeleccionarAlumno={onSeleccionarAlumno}
         />
       ))}
     </div>
